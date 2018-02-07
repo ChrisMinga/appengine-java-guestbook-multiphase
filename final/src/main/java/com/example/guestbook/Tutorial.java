@@ -17,6 +17,9 @@
 //[START all]
 package com.example.guestbook;
 
+import java.util.Date;
+
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
@@ -27,7 +30,25 @@ import com.googlecode.objectify.annotation.Id;
  * This is never actually created, but gives a hint to Objectify about our Ancestor key.
  */
 @Entity
-public class Guestbook {
-  @Id public String book;
+public class Tutorial {
+  @Id public Long id;
+  
+  public String identifier; 
+  public String tutor;
+  public String time;
+  public String day;
+  public String place;
+  
+  public Tutorial() {
+	  	this("standard", "Pretschner", "10:00", "Monday", "00.08.059");
+  }
+  
+  public Tutorial(String m_id, String m_tutor, String m_time, String m_day, String m_place) {
+	  	identifier = m_id;
+	    tutor = m_tutor;
+	    time = m_time;
+	    day = m_day;
+	    place = m_place;
+  }
 }
 //[END all]

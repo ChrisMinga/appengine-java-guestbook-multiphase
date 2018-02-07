@@ -5,17 +5,27 @@
 
 <!-- [START standard_mappings] -->
     <servlet>
-      <servlet-name>sign</servlet-name>
-      <servlet-class>com.example.guestbook.SignGuestbookServlet</servlet-class>
+      <servlet-name>register_tutorial</servlet-name>
+      <servlet-class>com.example.guestbook.RegisterTutorialServlet</servlet-class>
     </servlet>
+    
+    <servlet>
+      <servlet-name>unsubscribe_student</servlet-name>
+      <servlet-class>com.example.guestbook.UnsubscribeStudentServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+      <servlet-name>register_tutorial</servlet-name>
+      <url-pattern>/register_tutorial</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
-      <servlet-name>sign</servlet-name>
-      <url-pattern>/sign</url-pattern>
+      <servlet-name>unsubscribe_student</servlet-name>
+      <url-pattern>/unsubscribe_student</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>guestbook.jsp</welcome-file>
+        <welcome-file>attendance_login.jsp</welcome-file>
     </welcome-file-list>
 <!-- [END standard_mappings] -->
 

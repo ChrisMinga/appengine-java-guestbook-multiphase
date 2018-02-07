@@ -28,6 +28,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,29 +43,43 @@ import com.googlecode.objectify.ObjectifyService;
  * {@link #doPost(<#HttpServletRequest req#>, <#HttpServletResponse resp#>)} which takes the form
  * data and saves it.
  */
-public class SignGuestbookServlet extends HttpServlet {
-
+public class RegisterTutorialServlet extends HttpServlet {
+  
   // Process the http POST of the form
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    Greeting greeting;
 
-    UserService userService = UserServiceFactory.getUserService();
-    User user = userService.getCurrentUser();  // Find out who the user is.
-
-    String guestbookName = req.getParameter("guestbookName");
-    String content = req.getParameter("content");
-    if (user != null) {
-      greeting = new Greeting(guestbookName, content, user.getUserId(), user.getEmail());
-    } else {
-      greeting = new Greeting(guestbookName, content);
-    }
+	 Tutorial tutorial;
+    
+	 String tutorialID = req.getParameter("tutorialID");
+	 String tutorialTime = req.getParameter("tutorialTime");
+	 String tutorialTutor = req.getParameter("tutorialTutor");
+	 String tutorialDay = req.getParameter("tutorialDay");
+	 String tutorialPlace = req.getParameter("tutorialPlace");
+	 
+	 // default values
+	 if(tutorialID == null)
+		 tutorialID = "standard";
+	 
+	 if(tutorialTime == null)
+		 tutorialTime = "10:00";
+	 
+	 if(tutorialTutor == null)
+		 tutorialTutor = "Pretschner";
+	 
+	 if(tutorialDay == null)
+		 tutorialDay = "Monday";
+	 
+	 if(tutorialPlace == null)
+		 tutorialPlace = "00.08.059";
+		 
+	 tutorial = new Tutorial(tutorialID, tutorialTutor, tutorialTime, tutorialDay, tutorialPlace);
 
     // Use Objectify to save the greeting and now() is used to make the call synchronously as we
     // will immediately get a new page using redirect and we want the data to be present.
-    ObjectifyService.ofy().save().entity(greeting).now();
+    ObjectifyService.ofy().save().entity(tutorial).now();
 
-    resp.sendRedirect("/guestbook.jsp?guestbookName=" + guestbookName);
+    resp.sendRedirect("/attendance_main.jsp");
   }
 }
 //[END all]
