@@ -50,11 +50,8 @@ public class UnsubscribeStudentServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 	    
-	    Student searchedStudent = ObjectifyService.ofy().load().type(Student.class).id(req.getParameter("userID").trim()).now();
-	    resp.sendRedirect("/attendance_main.jspvcv"+req.getParameter("userID")+(searchedStudent==null));
-		
+	    resp.sendRedirect("/attendance_main.jsp");
 	    Student.unregisterFromTutorial(req.getParameter("userID"), req.getParameter("tutorialID"));
-
 
 	}
 }

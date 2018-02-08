@@ -70,7 +70,7 @@
     		<td><input type="submit" value="Unsubscribe ${fn:escapeXml(tutorialID)}"/></td>
     	</tr>
 	<input type="hidden" name="tutorialID" value="${fn:escapeXml(tutorialID)}"/>
-	<input type="hidden" name="userID" value=<%=user.getUserId()%>/>
+	<input type="hidden" name="userID" value="<%=user.getUserId()%>"/>
 	</table>
 </form>
 </body>
